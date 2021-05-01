@@ -1,17 +1,27 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { Router } from 'express';
-import { getAllTodos, getCompletedTodos } from './controllers';
+import {
+  getAllTodos,
+  getCompletedTodos,
+  getIncompleteTodos,
+  createTodos,
+  deleteTodos,
+  completeTodo,
+  incompleteTodo,
+} from './controllers';
 
 // Todo-routes
 const todoRouter = Router();
 
+// done
 todoRouter.get('/', getAllTodos);
 todoRouter.get('/completed', getCompletedTodos);
+todoRouter.get('/incomplete', getIncompleteTodos);
+todoRouter.post('/', createTodos);
+todoRouter.delete('/', deleteTodos);
+todoRouter.put('/completed', completeTodo);
+todoRouter.put('/incomplete', incompleteTodo);
 
-todoRouter.get('/incomplete', getAllTodos);
-todoRouter.post('/', getAllTodos);
-todoRouter.delete('/', getAllTodos);
-todoRouter.put('/completed', getAllTodos);
-todoRouter.put('/incomplete', getAllTodos);
+// undone
 
 export default todoRouter;
